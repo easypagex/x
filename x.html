@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𝕏 Trending · June 16, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: rgba(255,255,255,0.08);
+    --text: #e8e8f0;
+    --muted: #7a7a96;
+    --dim: #3a3a52;
+    --blue: #1d9bf0;
+    --gold: #f4c020;
+    --green: #00d084;
+    --red: #ff4757;
+    --purple: #a78bfa;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    padding: 0 16px 60px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    padding: 44px 0 20px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .x-mark {
+    font-family: 'Space Mono', monospace;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .header-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .live-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--red);
+    animation: blink 1.2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .15; }
+  }
+
+  .timestamp {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: .05em;
+  }
+
+  /* Trend rows */
+  .trend-list {
+    padding: 4px 0;
+  }
+
+  .trend {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    gap: 0 16px;
+    align-items: center;
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    border-radius: 6px;
+    transition: background .14s;
+    position: relative;
+    overflow: visible;
+  }
+
+  .trend:last-child { border-bottom: none; }
+
+  .trend:hover {
+    background: rgba(255,255,255,0.03);
+  }
+
+  .trend:hover .tname {
+    animation: dance var(--spd, 0.4s) ease-in-out infinite alternate;
+  }
+
+  .always-dance .tname {
+    animation: dance var(--spd, 0.4s) ease-in-out infinite alternate;
+  }
+
+  @keyframes dance {
+    0%   { transform: translateY(0)    rotate(0deg)    scale(1);    }
+    25%  { transform: translateY(-5px) rotate(-2deg)   scale(1.04); }
+    50%  { transform: translateY(2px)  rotate(1.5deg)  scale(0.97); }
+    75%  { transform: translateY(-3px) rotate(-1deg)   scale(1.02); }
+    100% { transform: translateY(1px)  rotate(1.5deg)  scale(1.01); }
+  }
+
+  .rank {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    text-align: center;
+    letter-spacing: .04em;
+  }
+
+  .info {}
+
+  .cat {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .cat.pol  { color: var(--gold); }
+  .cat.biz  { color: var(--blue); }
+  .cat.tech { color: var(--green); }
+
+  .tname {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    display: inline-block;
+    transform-origin: center bottom;
+    color: var(--text);
+  }
+
+  .ticker {
+    font-family: 'Space Mono', monospace;
+    font-size: 19px;
+  }
+
+  .desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 4px;
+    max-width: 500px;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    padding: 3px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .badge.hot  { background: rgba(255,71,87,.12);  color: #ff8d97; }
+  .badge.up   { background: rgba(0,208,132,.12);  color: #00d084; }
+  .badge.new  { background: rgba(244,192,32,.12); color: #f4c020; }
+  .badge.ipo  { background: rgba(167,139,250,.12);color: #a78bfa; }
+  .badge.live { background: rgba(29,155,240,.12); color: #1d9bf0; }
+
+  .arrow {
+    font-size: 15px;
+    color: var(--dim);
+    transition: transform .15s, color .15s;
+  }
+
+  .trend:hover .arrow {
+    transform: translate(2px, -2px);
+    color: var(--text);
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  footer p {
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: .03em;
+  }
+
+  footer strong { color: var(--muted); }
+
+  /* Fade-in animation */
+  .trend {
+    opacity: 0;
+    transform: translateY(8px);
+    animation: fadeUp .35s ease forwards;
+  }
+  .trend:nth-child(1) { animation-delay: .05s; }
+  .trend:nth-child(2) { animation-delay: .10s; }
+  .trend:nth-child(3) { animation-delay: .15s; }
+  .trend:nth-child(4) { animation-delay: .20s; }
+  .trend:nth-child(5) { animation-delay: .25s; }
+  .trend:nth-child(6) { animation-delay: .30s; }
+  .trend:nth-child(7) { animation-delay: .35s; }
+  .trend:nth-child(8) { animation-delay: .40s; }
+  .trend:nth-child(9) { animation-delay: .45s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 520px) {
+    .tname { font-size: 18px; }
+    .desc { font-size: 12px; }
+    .meta { display: none; }
+    .trend { grid-template-columns: 32px 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="header-inner">
+      <div class="logo-group">
+        <span class="x-mark">𝕏</span>
+        <span class="header-title">What's Trending</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;">
+        <div class="live-badge"><div class="live-dot"></div>Live</div>
+        <div class="timestamp">23:37 · 16 JUN 2026</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="trend-list">
+
+    <a class="trend" href="https://x.com/search?q=Witkoff" target="_blank" rel="noopener" style="--spd:0.38s">
+      <div class="rank">01</div>
+      <div class="info">
+        <div class="cat pol">Politics · Trending</div>
+        <div class="tname">Witkoff</div>
+        <div class="desc">Trump's Middle East envoy under fire over crypto conflicts of interest with UAE — World Liberty Financial ties in the spotlight.</div>
+      </div>
+      <div class="meta">
+        <span class="badge hot">🔥 Hot</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend" href="https://x.com/search?q=%24MSFT" target="_blank" rel="noopener" style="--spd:0.44s">
+      <div class="rank">02</div>
+      <div class="info">
+        <div class="cat biz">Business &amp; Finance · Trending</div>
+        <div class="tname ticker">$MSFT</div>
+        <div class="desc">Microsoft AI infrastructure spending and Copilot revenue figures under investor scrutiny.</div>
+      </div>
+      <div class="meta">
+        <span class="badge up">↑ Up</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend" href="https://x.com/search?q=%24STRC" target="_blank" rel="noopener" style="--spd:0.51s">
+      <div class="rank">03</div>
+      <div class="info">
+        <div class="cat biz">Business &amp; Finance · Trending</div>
+        <div class="tname ticker">$STRC</div>
+        <div class="desc">Strategy's preferred stock slips below $100 par — cash reserves may cover only 6 more months of dividends at 11.5% yield.</div>
+      </div>
+      <div class="meta">
+        <span class="badge hot">↓ Watch</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend" href="https://x.com/search?q=PayPay" target="_blank" rel="noopener" style="--spd:0.35s">
+      <div class="rank">04</div>
+      <div class="info">
+        <div class="cat tech">Technology · Trending</div>
+        <div class="tname">PayPay</div>
+        <div class="desc">Japan's dominant mobile payments app trending globally on expansion news and fintech buzz.</div>
+      </div>
+      <div class="meta">
+        <span class="badge new">New</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend always-dance" href="https://x.com/search?q=%22Grok+Build%22" target="_blank" rel="noopener" style="--spd:0.29s">
+      <div class="rank">05</div>
+      <div class="info">
+        <div class="cat tech">Technology · Trending</div>
+        <div class="tname">Grok Build</div>
+        <div class="desc">xAI's coding agent drops Agent Dashboard &amp; plugin marketplace — rivals Claude Code and GitHub Copilot.</div>
+      </div>
+      <div class="meta">
+        <span class="badge up">↑ Up</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend" href="https://x.com/search?q=Tether" target="_blank" rel="noopener" style="--spd:0.47s">
+      <div class="rank">06</div>
+      <div class="info">
+        <div class="cat biz">Business &amp; Finance · Trending</div>
+        <div class="tname">Tether</div>
+        <div class="desc">USDT under regulatory pressure as Bitcoin-backed stablecoin instruments compete for market share.</div>
+      </div>
+      <div class="meta">
+        <span class="badge up">↑ Up</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend" href="https://x.com/search?q=Donalds" target="_blank" rel="noopener" style="--spd:0.42s">
+      <div class="rank">07</div>
+      <div class="info">
+        <div class="cat pol">Politics · Trending</div>
+        <div class="tname">Donalds</div>
+        <div class="desc">Rep. Byron Donalds in the spotlight amid Congressional debates and Republican primary positioning.</div>
+      </div>
+      <div class="meta">
+        <span class="badge new">New</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend always-dance" href="https://x.com/search?q=%24SATA" target="_blank" rel="noopener" style="--spd:0.25s">
+      <div class="rank">08</div>
+      <div class="info">
+        <div class="cat biz">Business &amp; Finance · Trending</div>
+        <div class="tname ticker">SATA</div>
+        <div class="desc">Strive's 13% yield preferred stock launches daily dividends TODAY — pulling investors from rival STRC.</div>
+      </div>
+      <div class="meta">
+        <span class="badge live">🚀 Live</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+    <a class="trend always-dance" href="https://x.com/search?q=%24SPCX" target="_blank" rel="noopener" style="--spd:0.33s">
+      <div class="rank">09</div>
+      <div class="info">
+        <div class="cat biz">Business &amp; Finance · Trending</div>
+        <div class="tname ticker">SPCX</div>
+        <div class="desc">SpaceX IPO debuted June 12 at +19% ($161) — trading still red-hot 5 days after its historic Nasdaq listing.</div>
+      </div>
+      <div class="meta">
+        <span class="badge ipo">🚀 IPO</span>
+        <span class="arrow">↗</span>
+      </div>
+    </a>
+
+  </div>
+
+  <footer>
+    <p>Snapshot captured <strong>23:37 · June 16, 2026</strong>. Trends reflect X's real-time ranking.</p>
+    <p>Links open X search · Context by <strong>Anthropic Claude</strong></p>
+  </footer>
+
+</div>
+</body>
+</html>
