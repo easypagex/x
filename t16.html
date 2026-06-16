@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X Trending · June 16, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --border: #1e1e2e;
+    --accent-blue: #1d9bf0;
+    --accent-gold: #f4c020;
+    --accent-green: #00d084;
+    --accent-red: #ff4757;
+    --text-primary: #e8e8f0;
+    --text-secondary: #7a7a96;
+    --text-dim: #3a3a52;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Ambient grid */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .x-mark {
+    font-family: 'Space Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1;
+  }
+
+  .divider-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-dim);
+  }
+
+  h1 {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .timestamp {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* Live badge */
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-red);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
+  /* Category bar */
+  .cat-bar {
+    display: flex;
+    gap: 8px;
+    padding: 20px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cat-pill {
+    flex-shrink: 0;
+    padding: 5px 14px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s;
+    border: 1px solid transparent;
+  }
+
+  .cat-pill.all    { background: var(--text-primary); color: var(--bg); }
+  .cat-pill.pol    { background: rgba(244, 192, 32, 0.12); border-color: rgba(244, 192, 32, 0.3); color: var(--accent-gold); }
+  .cat-pill.biz    { background: rgba(29, 155, 240, 0.12); border-color: rgba(29, 155, 240, 0.3); color: var(--accent-blue); }
+  .cat-pill.tech   { background: rgba(0, 208, 132, 0.12); border-color: rgba(0, 208, 132, 0.3); color: var(--accent-green); }
+
+  /* Main trending list */
+  .trending-list {
+    padding: 8px 0;
+  }
+
+  .trend-item {
+    display: grid;
+    grid-template-columns: 40px 1fr auto;
+    gap: 0 20px;
+    align-items: start;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.12s;
+    border-radius: 4px;
+    margin: 0 -12px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .trend-item:hover {
+    background: rgba(255,255,255,0.025);
+  }
+
+  .trend-rank {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    padding-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .trend-main {
+    min-width: 0;
+  }
+
+  .trend-cat {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+
+  .cat-politics { color: var(--accent-gold); }
+  .cat-business { color: var(--accent-blue); }
+  .cat-technology { color: var(--accent-green); }
+
+  .trend-name {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .ticker {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .trend-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+  }
+
+  .trend-desc a {
+    color: var(--accent-blue);
+    text-decoration: none;
+  }
+
+  .trend-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .trend-volume {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+
+  .trend-volume span {
+    display: block;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .change-badge {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .up   { background: rgba(0, 208, 132, 0.12); color: var(--accent-green); }
+  .hot  { background: rgba(255, 71, 87, 0.12); color: var(--accent-red); }
+  .new  { background: rgba(244, 192, 32, 0.12); color: var(--accent-gold); }
+
+  /* Footer */
+  footer {
+    padding: 40px 0 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-note {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-note strong {
+    color: var(--text-secondary);
+  }
+
+  /* Scroll reveal */
+  .trend-item {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeUp 0.35s ease forwards;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .trend-item:nth-child(1) { animation-delay: 0.05s; }
+  .trend-item:nth-child(2) { animation-delay: 0.10s; }
+  .trend-item:nth-child(3) { animation-delay: 0.15s; }
+  .trend-item:nth-child(4) { animation-delay: 0.20s; }
+  .trend-item:nth-child(5) { animation-delay: 0.25s; }
+  .trend-item:nth-child(6) { animation-delay: 0.30s; }
+  .trend-item:nth-child(7) { animation-delay: 0.35s; }
+  .trend-item:nth-child(8) { animation-delay: 0.40s; }
+  .trend-item:nth-child(9) { animation-delay: 0.45s; }
+
+  @media (max-width: 580px) {
+    .trend-item { grid-template-columns: 32px 1fr; }
+    .trend-meta { display: none; }
+    .trend-name { font-size: 18px; }
+    h1 { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="header-inner">
+      <div class="logo-area">
+        <span class="x-mark">𝕏</span>
+        <div class="divider-dot"></div>
+        <h1>What's Trending</h1>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div class="live-badge"><div class="live-dot"></div>Live</div>
+        <div class="timestamp">23:37 · 16 JUN 2026</div>
+      </div>
+    </div>
+
+    <div class="cat-bar">
+      <div class="cat-pill all">All</div>
+      <div class="cat-pill pol">Politics</div>
+      <div class="cat-pill biz">Business & Finance</div>
+      <div class="cat-pill tech">Technology</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="trending-list">
+
+      <!-- 1. Witkoff -->
+      <div class="trend-item">
+        <div class="trend-rank">01</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-politics">Politics · Trending</div>
+          <div class="trend-name">Witkoff</div>
+          <div class="trend-desc">Steve Witkoff, Trump's Special Envoy to the Middle East, is drawing scrutiny over financial ties to World Liberty's crypto dealings with UAE — raising questions about foreign policy influence and conflicts of interest.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge hot">🔥 HOT</div>
+        </div>
+      </div>
+
+      <!-- 2. $MSFT -->
+      <div class="trend-item">
+        <div class="trend-rank">02</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-business">Business and Finance · Trending</div>
+          <div class="trend-name ticker">$MSFT</div>
+          <div class="trend-desc">Microsoft is trending as investors track AI infrastructure spending, Copilot revenue figures, and competition with OpenAI and xAI across enterprise software markets.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge up">↑ UP</div>
+        </div>
+      </div>
+
+      <!-- 3. $STRC -->
+      <div class="trend-item">
+        <div class="trend-rank">03</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-business">Business and Finance · Trending</div>
+          <div class="trend-name ticker">$STRC</div>
+          <div class="trend-desc">Strategy's Series A Perpetual Stretch Preferred Stock (STRC) is under pressure after falling below its $100 par value, amid concerns its cash reserves may cover only six more months of dividend payments at the current 11.5% annualized rate.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge hot">↓ WATCH</div>
+        </div>
+      </div>
+
+      <!-- 4. PayPay -->
+      <div class="trend-item">
+        <div class="trend-rank">04</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-technology">Technology · Trending</div>
+          <div class="trend-name">PayPay</div>
+          <div class="trend-desc">Japan's dominant mobile payment app PayPay is trending globally, likely driven by expansion news or a product announcement capturing fintech and Asian tech market attention.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge new">NEW</div>
+        </div>
+      </div>
+
+      <!-- 5. Grok Build -->
+      <div class="trend-item">
+        <div class="trend-rank">05</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-technology">Technology · Trending</div>
+          <div class="trend-name">Grok Build</div>
+          <div class="trend-desc">xAI's coding agent Grok Build continues to gain traction after its May 2026 launch. New features — including an Agent Dashboard and a plugin marketplace — are drawing comparisons with Claude Code and GitHub Copilot.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge up">↑ UP</div>
+        </div>
+      </div>
+
+      <!-- 6. Tether -->
+      <div class="trend-item">
+        <div class="trend-rank">06</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-business">Business and Finance · Trending</div>
+          <div class="trend-name">Tether</div>
+          <div class="trend-desc">Tether (USDT) is trending amid broader stablecoin market activity, increased regulatory scrutiny in the US, and growing competition from new dollar-pegged instruments tied to Bitcoin treasury strategies.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge up">↑ UP</div>
+        </div>
+      </div>
+
+      <!-- 7. Donalds -->
+      <div class="trend-item">
+        <div class="trend-rank">07</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-politics">Politics · Trending</div>
+          <div class="trend-name">Donalds</div>
+          <div class="trend-desc">Rep. Byron Donalds (R-FL) is trending in political discussions, likely tied to ongoing Congressional debates or positioning ahead of future Republican primary activity.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge new">NEW</div>
+        </div>
+      </div>
+
+      <!-- 8. SATA -->
+      <div class="trend-item">
+        <div class="trend-rank">08</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-business">Business and Finance · Trending</div>
+          <div class="trend-name ticker">SATA</div>
+          <div class="trend-desc">Strive's Variable Rate Series A Perpetual Preferred Stock (SATA) is surging after announcing daily dividend payments starting today — June 16. At a 13% yield, it is attracting investors away from Strategy's rival STRC instrument.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">—<span>posts</span></div>
+          <div class="change-badge up">↑ UP</div>
+        </div>
+      </div>
+
+      <!-- 9. SPCX -->
+      <div class="trend-item">
+        <div class="trend-rank">09</div>
+        <div class="trend-main">
+          <div class="trend-cat cat-business">Business and Finance · Trending</div>
+          <div class="trend-name ticker">SPCX</div>
+          <div class="trend-desc">SpaceX's IPO ticker SPCX debuted on Nasdaq on June 12, closing at $161 — up 19% on its first day. The company now includes xAI's Grok models and social network X after Musk's February merger. Trading remains highly active days later.</div>
+        </div>
+        <div class="trend-meta">
+          <div class="trend-volume">+19%<span>IPO debut</span></div>
+          <div class="change-badge up">🚀 UP</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-note">Snapshot captured <strong>23:37 · June 16, 2026</strong>. Trends reflect X/Twitter's real-time ranking.</div>
+    <div class="footer-note">Data: X Trending · Context: Anthropic Claude</div>
+  </footer>
+
+</div>
+</body>
+</html>
